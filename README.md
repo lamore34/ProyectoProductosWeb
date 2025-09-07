@@ -6,6 +6,16 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.17.
 
+## Estructura src/app
+1. components : Componentes comunes
+2. core : Contiene el interceptor para asignar el header Authorization en el consumo de las API
+3. models : Modelos e interfaces
+4. pages: Componentes de cada módulo, del login y el dashboard
+5. services: Consumo de API's
+
+## Configuración del Proyecto
+1. En el archivo environment.ts se especifica la url para consumo del API REST
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
@@ -30,12 +40,3 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
-## Estructura src/app
-1. components : Componentes comunes
-2. core : Contiene el interceptor para asignar el header Authorization en el consumo de las API
-3. models : Modelos e interfaces
-4. pages: Componentes de cada módulo, del login y el dashboard
-5. services: Consumo de API's
-
-## Configuración del Proyecto
-1. En el archivo environment.ts se especifica la url para consumo del API REST
