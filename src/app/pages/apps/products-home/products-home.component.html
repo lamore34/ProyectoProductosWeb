@@ -28,7 +28,7 @@
       <td>{{data.precioUnitario}}</td>
       <td>{{data.estado}}</td>
       <td>{{data.unidadMedida}}</td>
-      <td>{{data.fechaCreacion}}</td>
+      <td>{{data.fechaCreacion | date: 'yyyy-MM-dd' }}</td>
       <td>
         <button nz-button (click)="updateProduct(i)">Editar</button>
         <button nz-button nzDanger (click)="deleteProduct(i)">Eliminar</button>

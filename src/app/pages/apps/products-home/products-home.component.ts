@@ -66,10 +66,19 @@ export class ProductsHomeComponent {
     componentInstance.onSave = (p: ProductUpdate) => {
       this.#productService.updateProduct(p.codigoProducto, p).subscribe({
         next: () => {
+          const transformedProduct  = {
+            ...product,
+            ...p,
+            estado: p.estado ? 'Activo' : 'Inactivo',
+            unidadMedida: componentInstance.unitsList().find(u => u.id === p.idUnidadMedida)?.valor || '',
+          };
+
           this.productsList.update(products => {
             const copy = [...products];
+            copy[index] = transformedProduct;
             return copy;
           });
+
           componentInstance.resetProductForm();
           modalRef.destroy();
         },
@@ -109,7 +118,14 @@ export class ProductsHomeComponent {
       componentInstance.onSave = (p: ProductAdd) => {
       this.#productService.createProduct(p).subscribe({
         next: (data: any) => {
-          this.productsList.update(products => [...products, data]);
+          const transformedProduct  = {
+            ...data,
+            estado: data.estado ? 'Activo' : 'Inactivo',
+            unidadMedida: componentInstance.unitsList().find(u => u.id === data.idUnidadMedida)?.valor || '',
+            fechaCreacion: new Date(p.fechaCreacion)
+          };
+
+          this.productsList.update(products => [...products, transformedProduct ]);
           componentInstance.resetProductForm();
           modalRef.destroy();
         },
