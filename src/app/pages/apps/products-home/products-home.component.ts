@@ -63,12 +63,11 @@ export class ProductsHomeComponent {
     
     const componentInstance = modalRef.componentInstance as ProductFormComponent;
     componentInstance.product = { ...product };
-    componentInstance.onSave = (p) => {
-      this.#productService.updateProduct(p.codigo, p).subscribe({
-        next: (updatedProduct: ProductGet) => {          
+    componentInstance.onSave = (p: ProductUpdate) => {
+      this.#productService.updateProduct(p.codigoProducto, p).subscribe({
+        next: () => {
           this.productsList.update(products => {
             const copy = [...products];
-            copy[index] = updatedProduct;
             return copy;
           });
           componentInstance.resetProductForm();
@@ -85,8 +84,10 @@ export class ProductsHomeComponent {
     };
   }
 
-  deleteProduct(index: number) {    
-    this.#productService.deleteProduct(index)
+  deleteProduct(index: number) {
+    const product = this.productsList()[index];
+
+    this.#productService.deleteProduct(product.codigoProducto)
     .subscribe({
       next: () => {
         this.productsList.update(products => products.filter((_, i) => i !== index));

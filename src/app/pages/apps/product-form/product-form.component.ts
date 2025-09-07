@@ -9,6 +9,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { ProductGet } from '../../../models/product.model';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { ProductService } from '../../../services/product.service';
 
 @Component({
   selector: 'app-product-form',
@@ -32,6 +33,7 @@ export class ProductFormComponent {
   @Input() onSave!: (p: any) => void;
 
   #unitService = inject(UnitService);
+  #productService = inject(ProductService);
 
   unitsList = signal<Unit[]>([]);
   errorMessage: string = '';
@@ -52,7 +54,18 @@ export class ProductFormComponent {
     });
 
     if (this.product) {
-      this.productForm.patchValue(this.product);
+      this.#productService.getProduct(this.product.codigoProducto).subscribe((data) => {
+        this.productForm.patchValue({
+          codigoProducto: data.codigoProducto,
+          nombre: data.nombre,
+          descripcion: data.descripcion,
+          referenciaInterna: data.referenciaInterna,
+          precioUnitario: data.precioUnitario,
+          estado: data.estado,
+          idUnidadMedida: data.unidadMedida.id,
+          fechaCreacion: new Date(data.fechaCreacion)
+        });
+      });
     }
   }
 

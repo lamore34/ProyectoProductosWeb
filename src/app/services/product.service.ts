@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
-import { ProductAdd, ProductGet, ProductUpdate } from '../models/product.model';
+import { Product, ProductAdd, ProductGet, ProductUpdate } from '../models/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +17,8 @@ export class ProductService {
     return this.#service.get<ProductGet[]>(this._url);
   }
 
-  getProduct(id: number): Observable<ProductGet> {
-    return this.#service.get<ProductGet>(`${this._url}/${id}`);
+  getProduct(id: number): Observable<Product> {
+    return this.#service.get<Product>(`${this._url}/${id}`);
   }
 
   createProduct(producto: ProductAdd): Observable<ProductGet> {

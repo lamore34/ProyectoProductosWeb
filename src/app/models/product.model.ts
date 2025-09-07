@@ -1,3 +1,5 @@
+import { UnitModel } from "./unit.model";
+
 export interface ProductAdd {
   codigoProducto: number;
   nombre: string;
@@ -28,4 +30,15 @@ export interface ProductUpdate {
   precioUnitario: number;
   estado: boolean;
   idUnidadMedida: number;
+}
+
+export interface Product {
+  codigoProducto: number;
+  nombre: string;
+  descripcion: string;
+  referenciaInterna: string;
+  precioUnitario: number;
+  estado: string;
+  unidadMedida: UnitModel;
+  fechaCreacion: Date;
 }
