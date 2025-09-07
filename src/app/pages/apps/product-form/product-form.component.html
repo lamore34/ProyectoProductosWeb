@@ -1,0 +1,80 @@
+<div class="product-form-container">
+  <form nz-form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    
+    <nz-form-item>
+      <nz-form-label nzRequired>Código</nz-form-label>
+      <nz-form-control nzErrorTip="El código es requerido">
+        <input nz-input type="number" formControlName="codigoProducto" id="codigoProducto" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired>Nombre</nz-form-label>
+      <nz-form-control nzErrorTip="El nombre es requerido">
+        <input nz-input formControlName="nombre" id="nombre" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired>Descripción</nz-form-label>
+      <nz-form-control nzErrorTip="La descripción es requerida">
+        <input nz-input formControlName="descripcion" id="descripcion" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired>Referencia Interna</nz-form-label>
+      <nz-form-control nzErrorTip="La referencia es requerida">
+        <input nz-input formControlName="referenciaInterna" id="referenciaInterna" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired>Precio Unitario</nz-form-label>
+      <nz-form-control nzErrorTip="El precio es requerido">
+        <input nz-input type="number" formControlName="precioUnitario" id="precioUnitario" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired>Estado</nz-form-label>
+      <nz-form-control nzErrorTip="El estado es requerido">
+         <nz-select formControlName="estado">
+            <nz-option nzLabel="Activo" [nzValue]="true"></nz-option>
+            <nz-option nzLabel="Inactivo" [nzValue]="false"></nz-option>
+          </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired>Unidad Medida</nz-form-label>
+      <nz-form-control nzErrorTip="La unidad medida es requerida">
+        <nz-select formControlName="idUnidadMedida">
+            <nz-option *ngFor="let u of unitsList()" [nzValue]="u.id" [nzLabel]="u.valor"></nz-option>
+        </nz-select>        
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired>Fecha de Creación</nz-form-label>
+      <nz-form-control nzErrorTip="La fecha de creación es requerida">
+        <nz-date-picker 
+          formControlName="fechaCreacion" 
+          id="fechaCreacion"
+          nzFormat="yyyy-MM-dd"
+          nzPlaceHolder="Seleccione una fecha">
+        </nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+
+    <div class="error-message" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
+
+    <div class="product-form-actions">
+      <button nz-button nzType="primary" [disabled]="productForm.invalid">
+        Guardar
+      </button>
+    </div>
+  </form>
+</div>

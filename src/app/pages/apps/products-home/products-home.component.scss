@@ -1,0 +1,21 @@
+nz-table {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 16px;
+
+    th {
+      background-color: #fafafa;
+      font-weight: 500;
+      text-align: left;
+    }
+
+    td {
+      vertical-align: middle;
+    }    
+}
+
+.error-message {
+  color: #e71a1d;
+  margin-top: 10px;
+  text-align: center;
+}

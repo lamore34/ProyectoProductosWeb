@@ -1,0 +1,38 @@
+<h1>PRODUCTOS</h1>
+<button nz-button nzType="primary" (click)="createProduct()">Agregar Producto</button>
+
+<div class="error-message" *ngIf="errorMessage">
+  {{ errorMessage }}
+</div>
+
+<nz-table [nzData]="productsList()" [nzBordered]="true">
+  <thead>
+    <tr>
+      <th>Código</th>
+      <th>Nombre</th>
+      <th>Descripción</th>
+      <th>Referencia Interna</th>
+      <th>Precio Unitario</th>
+      <th>Estado</th>
+      <th>Unidad de Medida</th>
+      <th>Fecha Creación</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of productsList(); let i = index">
+      <td>{{data.codigoProducto}}</td>
+      <td>{{data.nombre}}</td>
+      <td>{{data.descripcion}}</td>
+      <td>{{data.referenciaInterna}}</td>
+      <td>{{data.precioUnitario}}</td>
+      <td>{{data.estado}}</td>
+      <td>{{data.unidadMedida}}</td>
+      <td>{{data.fechaCreacion}}</td>
+      <td>
+        <button nz-button (click)="updateProduct(i)">Editar</button>
+        <button nz-button nzDanger (click)="deleteProduct(i)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
